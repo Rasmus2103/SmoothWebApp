@@ -17,7 +17,7 @@ public class SuperPowerCount {
 
     }
 
-    public String getHeroName() {
+    public String getHeroName()    {
         return heroName;
     }
 
