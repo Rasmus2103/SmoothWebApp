@@ -43,6 +43,12 @@ public class SuperheroController {
         return new ResponseEntity<>(superheroList, HttpStatus.OK);
     }
 
+    @GetMapping(path="superheroes/superpower/{name}")
+    public ResponseEntity<SuperPowerCount> getPowers(@PathVariable String name) {
+        SuperPowerCount superPowerCount = superheroRepo.getPowers(name);
+        return new ResponseEntity<>(superPowerCount, HttpStatus.OK);
+    }
+
     @GetMapping(path="superheroes/count/{name}")
     public ResponseEntity<PowerCount> getPowerCount(@PathVariable String name) {
         PowerCount count = superheroRepo.getPowerCount(name);

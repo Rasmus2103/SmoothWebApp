@@ -11,6 +11,7 @@ public interface ISuperheroRepo {
     List<Superhero> getSuperheroes();
     Superhero getSuperhero(String name);
     List<SuperPowerCount> getHeroAndPowers();
+    SuperPowerCount getPowers(String power);
     PowerCount getPowerCount(String name);
     List<City> getCity();
 }

@@ -79,7 +79,7 @@ public class SuperheroRepo implements ISuperheroRepo {
         try {
             SQL = "SELECT heroname, realname, powername FROM superhero " +
                     "JOIN superheropower ON superhero.id = superheropower.superheroid " +
-                    "JOIN superpower ON superheropower.superpowerid  = superpower.id";
+                    "JOIN superpower ON superheropower.superpowerid  = superpower.id ";
             ps = connect().prepareStatement(SQL);
             rs = ps.executeQuery();
 
@@ -102,6 +102,29 @@ public class SuperheroRepo implements ISuperheroRepo {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public SuperPowerCount getPowers(String name) {
+        SuperPowerCount superPowerObj = null;
+        try {
+            SQL = "SELECT heroname, realname, powername FROM superhero " +
+                    "JOIN superheropower ON superhero.id = superheropower.superheroid " +
+                    "JOIN superpower ON superheropower.superpowerid  = superpower.id " +
+                    "AND heroname = ?";
+            ps = connect().prepareStatement(SQL);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                String heroName = rs.getString("heroname");
+                String realName = rs.getString("realName");
+                List<String> powers = new ArrayList<>();
+                powers.add(rs.getString("powername"));
+                superPowerObj = new SuperPowerCount(heroName, realName, powers);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return superPowerObj;
     }
 
 

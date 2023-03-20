@@ -7,7 +7,7 @@ public class SuperPowerCount {
     private String realName;
     private List<String> powers;
 
-    public SuperPowerCount(String heroName, String realName, List<String> powers, int count) {
+    public SuperPowerCount(String heroName, String realName, List<String> powers) {
         this.heroName = heroName;
         this.realName = realName;
         this.powers = powers;
